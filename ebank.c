@@ -42,7 +42,7 @@ void Enqueue(struct Noms* h, char Nom[]) {
     current->next = temp;
 }
 
-// Défiler la structure Noms
+// DÃ©filer la structure Noms
 void Dequeue(struct Noms* h) {
     if (h->next == NULL) {
         printf("La file est vide.\n");
@@ -54,7 +54,7 @@ void Dequeue(struct Noms* h) {
     free(temp);
 }
 
-//Cryptage et Décryptage des Mots de passes avec une opération XOR
+//Cryptage et DÃ©cryptage des Mots de passes avec une opÃ©ration XOR
 void Crypt(char Mdp[20]) {
     char cle = 'X';
     int len = strlen(Mdp);
@@ -63,7 +63,7 @@ void Crypt(char Mdp[20]) {
     }
 }
 
-//Créer un nouveau compte.
+//CrÃ©er un nouveau compte.
 void Append(struct Compte C) {
     FILE *fp = fopen("AccountData.txt", "a");
     if (fp != NULL) {
@@ -98,7 +98,7 @@ void AppendTrans(struct Transaction T) {
     }
 }
 
-//Mise à jour des informations d’un compte existant.
+//Mise Ã  jour des informations dâ€™un compte existant.
 void Update(char id[], struct Compte NvC) {
     FILE *fp = fopen("AccountData.txt", "r");
     if (fp != NULL) {
@@ -151,7 +151,7 @@ void Update(char id[], struct Compte NvC) {
     }
 }
 
-//Afficher les détails d’un compte existant.
+//Afficher les dÃ©tails dâ€™un compte existant.
 void DisplayClient(char id[]) {
     FILE *fp = fopen("AccountData.txt", "r");
     if (fp != NULL) {
@@ -214,14 +214,14 @@ void Delete(char id[]) {
             remove("AccountData.txt");
             rename("temp.txt", "AccountData.txt");
             if (verif) {
-                printf("Compte supprimé avec succès.\n");
+                printf("Compte supprimÃ© avec succÃ¨s.\n");
             }
             else {
                 printf("Compte non existant.\n");
             }
         }
         else {
-            printf("Erreur lors de la création du fichier temporaire.\n");
+            printf("Erreur lors de la crÃ©ation du fichier temporaire.\n");
             fclose(fp);
         }
     }
@@ -255,7 +255,7 @@ void DisplayNames() {
     }
 }
 
-//Gérer les transactions bancaires.
+//GÃ©rer les transactions bancaires.
 void Transfer(struct Transaction T) {
     FILE *fp = fopen("AccountData.txt", "r+");
     if (fp != NULL) {
@@ -332,7 +332,7 @@ void DisplayTrans() {
     }
 }
 
-//Afficher toutes les transactions associées à un compte spécifique
+//Afficher toutes les transactions associÃ©es Ã  un compte spÃ©cifique
 void DisplayClientTrans(char IdCompte[]) {
     FILE *fp = fopen("TransactionData.txt", "r");
     if (fp != NULL) {
@@ -387,9 +387,7 @@ int main() {
         switch (choix) {
             case 1:
                 printf("Entrez le nom du client : ");
-                getchar();
-                fgets(C.NomClient, sizeof(C.NomClient), stdin);
-                C.NomClient[strcspn(C.NomClient, "\n")] = '\0';
+                scanf("%s", C.NomClient);
                 printf("Entrez l'identifiant du compte : ");
                 scanf("%s", C.IdCompte);
                 printf("Entrez le mot de passe : ");
@@ -414,12 +412,10 @@ int main() {
                 DisplayClientTrans(IdCompte);
                 break;
             case 4:
-                printf("Entrez l'identifiant du compte a mettre à jour : ");
+                printf("Entrez l'identifiant du compte a mettre Ã  jour : ");
                 scanf("%8s", IdCompte);
                 printf("Entrez le nom du client : ");
-                getchar();
-                fgets(C.NomClient, sizeof(C.NomClient), stdin);
-                C.NomClient[strcspn(C.NomClient, "\n")] = '\0';
+                scanf("%s", C.NomClient);
                 printf("Entrez le identifiant du compte : ");
                 scanf("%s", C.IdCompte);
                 printf("Entrez le mot de passe : ");
@@ -434,7 +430,7 @@ int main() {
                 Update(IdCompte,C);
                 break;
             case 5:
-                printf("Entrez l'identifiant du compte à supprimer : ");
+                printf("Entrez l'identifiant du compte Ã  supprimer : ");
                 scanf("%8s", IdCompte);
                 Delete(IdCompte);
                 break;
